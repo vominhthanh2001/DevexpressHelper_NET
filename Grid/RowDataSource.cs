@@ -8,35 +8,26 @@ using System.Threading.Tasks;
 
 namespace DevexpressHelper_NET.Grid
 {
-    public class RowDataSource<TModel>
+    public class RowDataSource<TModel> : InfoDataSource<TModel>
     {
-        public RowDataSource()
+        public RowDataSource() : base()
         {
-            throw new ArgumentNullException(nameof(GridControl) + "|" + nameof(GridView));
+
         }
 
-        public RowDataSource(GridControl gridControl, GridView gridView)
+        public RowDataSource(GridControl gridControl, GridView gridView) : base(gridControl, gridView)
         {
-            _gridControl = gridControl ?? throw new ArgumentNullException(nameof(gridControl));
-            _gridView = gridView ?? throw new ArgumentNullException(nameof(gridView));
-            _models = new List<TModel>();
+
         }
 
-        public RowDataSource(GridControl gridControl, GridView gridView, List<TModel> models)
+        public RowDataSource(GridControl gridControl, GridView gridView, List<TModel> models) : base(gridControl, gridView, models)
         {
-            _gridControl = gridControl ?? throw new ArgumentNullException(nameof(gridControl));
-            _gridView = gridView ?? throw new ArgumentNullException(nameof(gridView));
-            _models = models ?? throw new ArgumentNullException(nameof(models));
+
         }
-
-        private GridControl _gridControl;
-
-        private GridView _gridView;
-        private List<TModel> _models;
 
         private int[] IndexsRowSelected()
         {
-            return _gridView.GetSelectedRows().ToArray();
+            return base.GridView.GetSelectedRows().ToArray();
         }
 
         public TModel RowSelect()
@@ -49,7 +40,7 @@ namespace DevexpressHelper_NET.Grid
             if (indexs.Length == 0)
                 return default(TModel);
 
-            var rows = indexs.Select(x => _models[x]).Cast<TModel>().ToList();
+            var rows = indexs.Select(x => base.Models[x]).Cast<TModel>().ToList();
 
             return rows.FirstOrDefault();
         }
@@ -64,7 +55,7 @@ namespace DevexpressHelper_NET.Grid
             if (indexs.Length == 0)
                 return default(List<TModel>);
 
-            var rows = indexs.Select(x => _models[x]).Cast<TModel>().ToList();
+            var rows = indexs.Select(x => base.Models[x]).Cast<TModel>().ToList();
 
             return rows;
         }
