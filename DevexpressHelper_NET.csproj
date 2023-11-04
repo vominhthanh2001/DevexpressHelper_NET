@@ -123,6 +123,7 @@
     <Compile Include="Grid\GridControlDataSource.cs" />
     <Compile Include="Grid\GridInitialize.cs" />
     <Compile Include="Grid\IGrid.cs" />
+    <Compile Include="Grid\RowDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
