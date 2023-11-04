@@ -2,6 +2,7 @@
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevexpressHelper.ControlHelper;
+using DevexpressHelper_NET.Grid;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DevexpressHelper.Grid
 {
-    public class GridInitialize<TModel> : IGrid<TModel>
+    public class GridInitialize<TModel> : RowDataSource<TModel>, IGrid<TModel>
     {
         public GridInitialize()
         {
