@@ -17,7 +17,7 @@ namespace DevexpressHelper.Grid
         {
             throw new ArgumentNullException(nameof(GridControl) + "|" + nameof(GridView));
         }
-        public GridInitialize(GridControl gridControl, GridView gridView)
+        public GridInitialize(GridControl gridControl, GridView gridView) : base(gridControl, gridView)
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             if (gridControl is null)
@@ -33,7 +33,8 @@ namespace DevexpressHelper.Grid
             GridControl = gridControl;
             GridView = gridView;
         }
-        public GridInitialize(GridControl gridControl, GridView gridView, List<TModel> models)
+
+        public GridInitialize(GridControl gridControl, GridView gridView, List<TModel> models) : base(gridControl, gridView, models)
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             if (gridControl is null)

@@ -14,6 +14,14 @@ namespace DevexpressHelper_NET.Grid
         {
             throw new ArgumentNullException(nameof(GridControl) + "|" + nameof(GridView));
         }
+
+        public RowDataSource(GridControl gridControl, GridView gridView)
+        {
+            _gridControl = gridControl ?? throw new ArgumentNullException(nameof(gridControl));
+            _gridView = gridView ?? throw new ArgumentNullException(nameof(gridView));
+            _models = new List<TModel>();
+        }
+
         public RowDataSource(GridControl gridControl, GridView gridView, List<TModel> models)
         {
             _gridControl = gridControl ?? throw new ArgumentNullException(nameof(gridControl));
