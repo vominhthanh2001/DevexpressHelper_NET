@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace DevexpressHelper_NET.Grid
 {
-    public class InfoDataSource<TModel>
+    public class InfoDataSource<TModel> : GridEventHandler<TModel>
     {
         public InfoDataSource()
         {
             throw new ArgumentNullException(nameof(GridControl) + "|" + nameof(GridView));
         }
-        public InfoDataSource(GridControl gridControl, GridView gridView) 
+        public InfoDataSource(GridControl gridControl, GridView gridView)
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             if (gridControl is null)

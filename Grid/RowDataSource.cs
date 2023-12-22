@@ -38,6 +38,19 @@ namespace DevexpressHelper_NET.Grid
             return base.GridView.GetSelectedRows().ToArray();
         }
 
+        public List<object> GetModels()
+        {
+            List<object> models = new List<object>();
+
+            for (int i = 0; i < base.GridView.RowCount; i++)
+            {
+                var row = base.GridView.GetRow(i);
+                models.Add(row);
+            }
+
+            return models;
+        }
+
         public TModel RowSelect()
         {
             int[] indexs = IndexsRowSelected();
@@ -48,7 +61,8 @@ namespace DevexpressHelper_NET.Grid
             if (indexs.Length == 0)
                 return default(TModel);
 
-            var rows = indexs.Select(x => base.Models[x]).Cast<TModel>().ToList();
+            var dataSource = GetModels();
+            var rows = indexs.Select(x => dataSource[x]).Cast<TModel>().ToList();
 
             return rows.FirstOrDefault();
         }
@@ -63,14 +77,10 @@ namespace DevexpressHelper_NET.Grid
             if (indexs.Length == 0)
                 return default(List<TModel>);
 
-            var rows = indexs.Select(x => base.Models[x]).Cast<TModel>().ToList();
+            var dataSource = GetModels();
+            var rows = indexs.Select(x => dataSource[x]).Cast<TModel>().ToList();
 
             return rows;
-        }
-
-        public void SetForeColorCell()
-        {
-            GridView.Columns[""].AppearanceCell.ForeColor = Color.White;
         }
 
         public void SetForeColorRow(TModel model, Color color)
@@ -112,16 +122,17 @@ namespace DevexpressHelper_NET.Grid
                 if (_index == index && _color != default(Color) && _foreColor)
                 {
                     e.Appearance.ForeColor = _color;
+                    _index = -1;
+                    _color = default(Color);
+                    _foreColor = false;
                 }
                 else if (_index == index && _color != default(Color) && _backColor)
                 {
                     e.Appearance.BackColor = _color;
+                    _index = -1;
+                    _color = default(Color);
+                    _backColor = false;
                 }
-
-                _index = -1;
-                _color = default(Color);
-                _foreColor = false;
-                _backColor = false;
             }
         }
     }

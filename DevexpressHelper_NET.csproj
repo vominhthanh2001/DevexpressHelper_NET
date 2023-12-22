@@ -121,6 +121,7 @@
     <Compile Include="ControlHelper\ControlForm.cs" />
     <Compile Include="ControlHelper\ControlInvoke.cs" />
     <Compile Include="Grid\GridControlDataSource.cs" />
+    <Compile Include="Grid\GridEventHandler.cs" />
     <Compile Include="Grid\GridInitialize.cs" />
     <Compile Include="Grid\IGrid.cs" />
     <Compile Include="Grid\InfoDataSource.cs" />
