@@ -62,7 +62,7 @@ namespace DevexpressHelper_NET.Grid
 
         private List<TModel> _models = new List<TModel>();
         public List<TModel> Models { get => _models; set => _models = value; }
-        public List<object> DataSource
+        public List<TModel> DataSource
         {
             get
             {
@@ -73,7 +73,7 @@ namespace DevexpressHelper_NET.Grid
                     models.Add(row);
                 }
 
-                return models;
+                return models.Cast<TModel>().ToList();
             }
         }
         public int Count => Models.Count;
