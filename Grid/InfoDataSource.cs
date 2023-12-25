@@ -62,6 +62,20 @@ namespace DevexpressHelper_NET.Grid
 
         private List<TModel> _models = new List<TModel>();
         public List<TModel> Models { get => _models; set => _models = value; }
+        public List<object> DataSource
+        {
+            get
+            {
+                List<object> models = new List<object>();
+                for (int i = 0; i < _gridView.RowCount; i++)
+                {
+                    object row = _gridView.GetRow(i);
+                    models.Add(row);
+                }
+
+                return models;
+            }
+        }
         public int Count => Models.Count;
     }
 }

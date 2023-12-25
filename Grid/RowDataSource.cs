@@ -38,19 +38,6 @@ namespace DevexpressHelper_NET.Grid
             return base.GridView.GetSelectedRows().ToArray();
         }
 
-        public List<object> GetModels()
-        {
-            List<object> models = new List<object>();
-
-            for (int i = 0; i < base.GridView.RowCount; i++)
-            {
-                var row = base.GridView.GetRow(i);
-                models.Add(row);
-            }
-
-            return models;
-        }
-
         public TModel RowSelect()
         {
             int[] indexs = IndexsRowSelected();
@@ -61,7 +48,7 @@ namespace DevexpressHelper_NET.Grid
             if (indexs.Length == 0)
                 return default(TModel);
 
-            var dataSource = GetModels();
+            var dataSource = DataSource;
             var rows = indexs.Select(x => dataSource[x]).Cast<TModel>().ToList();
 
             return rows.FirstOrDefault();
@@ -77,7 +64,7 @@ namespace DevexpressHelper_NET.Grid
             if (indexs.Length == 0)
                 return default(List<TModel>);
 
-            var dataSource = GetModels();
+            var dataSource = DataSource;
             var rows = indexs.Select(x => dataSource[x]).Cast<TModel>().ToList();
 
             return rows;
